@@ -39,5 +39,4 @@ else
         wget https://updates.duplicati.com/experimental/${file_name}
     fi
     dpkg -s duplicati 2>/dev/null >/dev/null || gdebi --non-interactive ${file_name}
-    pip3 install --quiet -r /montagu/backup/requirements.txt
 fi

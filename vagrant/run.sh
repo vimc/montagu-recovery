@@ -8,4 +8,6 @@ cp /montagu/backup/configs/support.montagu/* /etc/montagu/backup/
 
 pip3 install --quiet -r /montagu/backup/requirements.txt
 
+## At this point copy over a suitable /etc/montagu/backup/secrets.json file
+
 /montagu/backup/restore.py

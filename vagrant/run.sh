@@ -8,16 +8,10 @@ cd /montagu/backup
 mkdir -p /etc/montagu/backup
 cp /montagu/backup/configs/support.montagu/* /etc/montagu/backup/
 
-# This step here fails because it's doing too much
-## /montagu/backup/setup.sh
+# This step here fails because it's doing too much - I've moved the
+# bulk of this into the main provisioning script but we still need to
+# access secrets to get at the aws key.  For now I am working around
+# this by manually setting up the /etc/montagu/secrets.json file and
+# *not* running setup.sh
 
-file_name=duplicati_2.0.1.73-1_all.deb
-
-apt-get -q install gdebi cron -y
-if [ ! -f ${file_name} ]; then
-    wget https://updates.duplicati.com/experimental/${file_name}
-fi
-dpkg -s duplicati 2>/dev/null >/dev/null || gdebi --non-interactive ${file_name}
-
-apt-get install python3-pip -y
-pip3 install --quiet -r ${BASH_SOURCE%/*}/requirements.txt
+/montagu/backup/restore.py

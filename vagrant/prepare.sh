@@ -29,3 +29,15 @@ else
     rm ${VAULT_ZIP}
     mv vault /usr/bin
 fi
+
+if which -a duplicati > /dev/null; then
+    echo "duplicati is already installed"
+else
+    file_name=duplicati_2.0.1.73-1_all.deb
+    apt-get -q install gdebi cron -y
+    if [ ! -f ${file_name} ]; then
+        wget https://updates.duplicati.com/experimental/${file_name}
+    fi
+    dpkg -s duplicati 2>/dev/null >/dev/null || gdebi --non-interactive ${file_name}
+    pip3 install --quiet -r /montagu/backup/requirements.txt
+fi

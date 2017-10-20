@@ -3,7 +3,8 @@
 apt-get update
 apt install -y \
     git \
-    python3-pip
+    python3-pip \
+    unzip
 
 if which -a docker > /dev/null; then
     echo "docker is already installed"
@@ -16,4 +17,15 @@ else
    stable"
     sudo apt-get update
     sudo apt-get install -y docker-ce
+fi
+
+if which -a vault > /dev/null; then
+    echo "vault is already installed"
+else
+    VAULT_VERSION=0.8.3
+    VAULT_ZIP=vault_${VAULT_VERSION}_linux_amd64.zip
+    wget https://releases.hashicorp.com/vault/${VAULT_VERSION}/${VAULT_ZIP}
+    unzip ${VAULT_ZIP}
+    rm ${VAULT_ZIP}
+    mv vault /usr/bin
 fi

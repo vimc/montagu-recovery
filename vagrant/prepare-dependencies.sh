@@ -33,10 +33,11 @@ fi
 if which -a duplicati > /dev/null; then
     echo "duplicati is already installed"
 else
-    file_name=duplicati_2.0.1.73-1_all.deb
+    DUPLICATI_DEB=duplicati_2.0.1.73-1_all.deb
     apt-get -q install gdebi cron -y
-    if [ ! -f ${file_name} ]; then
-        wget https://updates.duplicati.com/experimental/${file_name}
+    if [ ! -f ${DUPLICATI_DEB} ]; then
+        wget https://updates.duplicati.com/experimental/${DUPLICATI_DEB}
     fi
-    dpkg -s duplicati 2>/dev/null >/dev/null || gdebi --non-interactive ${file_name}
+    dpkg -s duplicati 2>/dev/null >/dev/null || gdebi --non-interactive ${DUPLICATI_DEB}
+    rm -f $DUPLICATI_DEB
 fi

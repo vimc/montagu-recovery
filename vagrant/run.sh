@@ -1,5 +1,7 @@
 sudo su
-mkdir /montagu
+mkdir /mnt/data/montagu
+ln -s /mnt/data/montagu /montagu
+
 git clone https://github.com/vimc/montagu-backup /montagu/backup
 git clone https://github.com/vimc/montagu-vault  /montagu/vault
 

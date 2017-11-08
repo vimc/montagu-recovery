@@ -10,6 +10,8 @@ if which -a docker > /dev/null; then
     echo "docker is already installed"
 else
     echo "installing docker"
+    mkdir /mnt/data/docker
+    ln -s /mnt/data/docker /var/lib/docker
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     sudo add-apt-repository \
          "deb [arch=amd64] https://download.docker.com/linux/ubuntu \

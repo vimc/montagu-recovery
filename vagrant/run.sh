@@ -12,3 +12,15 @@ cp /vagrant/secrets.json /etc/montagu/backup/secrets.json
 pip3 install --quiet -r /montagu/backup/requirements.txt
 
 /montagu/backup/restore.py
+
+## Get the vault up
+(cd /montagu/vault && ./run-no-ssl.sh)
+
+/montagu/unseal-loopback.sh
+/montagu/unseal-loopback.sh
+
+(cd /montagu/vault && ./restart-with-ssl.sh)
+
+export VAULT_ADDR=https://support.montagu.dide.ic.ac.uk:8200
+vault unseal
+vault unseal

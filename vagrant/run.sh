@@ -7,9 +7,8 @@ git clone https://github.com/vimc/montagu-vault  /montagu/vault
 
 mkdir -p /etc/montagu/backup
 cp /montagu/backup/configs/support.montagu/* /etc/montagu/backup/
+cp /vagrant/secrets.json /etc/montagu/backup/secrets.json
 
 pip3 install --quiet -r /montagu/backup/requirements.txt
-
-## At this point copy over a suitable /etc/montagu/backup/secrets.json file
 
 /montagu/backup/restore.py

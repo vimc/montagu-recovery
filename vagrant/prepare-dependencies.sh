@@ -45,3 +45,11 @@ else
     dpkg -s duplicati 2>/dev/null >/dev/null || gdebi --non-interactive ${DUPLICATI_DEB}
     rm -f $DUPLICATI_DEB
 fi
+
+
+if fgrep support.montagu.dide.ic.ac.uk /etc/hosts > /dev/null; then
+    echo "Hosts already set up"
+else
+    echo "Setting ourselves up as support.montagu.dide.ic.ac.uk"
+    echo "127.0.0.1 support.montagu.dide.ic.ac.uk support" >> /etc/hosts
+fi

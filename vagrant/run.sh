@@ -14,6 +14,7 @@ pip3 install --quiet -r /montagu/backup/requirements.txt
 /montagu/backup/restore.py
 
 ## Get the vault up
+git -C /montagu/vault checkout i959
 (cd /montagu/vault && ./run-no-ssl.sh)
 
 /montagu/unseal-loopback.sh

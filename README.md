@@ -19,3 +19,12 @@ vagrant up
 ```
 
 Then work through the `run.sh` script - this requires user intervention for getting the vault up and on some interaction with the vault.
+
+At the end of that script everything is done except for TeamCity.  That can't be tested within the virtual machine, so come *back out* and run, from within `montagu-recovery`
+
+```
+git clone https://github.com/vimc/montagu-ci.git montagu-ci
+cp vagrant/shared/TeamCity_Backup.zip montagu-ci/shared/restore
+cd montagu-ci
+vagrant up montagu-ci-server
+```

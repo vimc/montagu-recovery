@@ -34,3 +34,21 @@ vault unseal
 git clone https://github.com/vimc/montagu-registry  /montagu/registry
 pip3 install --user -r /montagu/registry/requirements.txt
 (cd /montagu/registry && ./montagu-registry start)
+
+## 4. TeamCity
+git clone https://github.com/vimc/montagu-ci /montagu/montagu-ci
+mkdir -p /montagu/montagu-ci/shared/restore
+TEAMCITY_LATEST=$(ls -1tr /montagu/teamcity | tail -n1)
+cp $TEAMCITY_LATEST /montagu/montagu-ci/shared/restore/TeamCity_Backup.zip
+
+## The last bit can't be done via a vagrant machine because it needs
+## to run a vagrant instance and virtualbox does not support nested
+## virtualisation.  So we test this bit elsewhere (via montagu-ci's
+## montagu-ci-backup machine).  But outside of VM-land we'd just do
+cd /montagu/montagu-ci
+vagrant up montagu-ci-server
+vagrant up montagu-ci-agent-01
+vagrant up montagu-ci-agent-01
+vagrant up montagu-ci-agent-01
+
+cp $TEAMCITY_LATEST /vagrant/TeamCity_Backup.zip

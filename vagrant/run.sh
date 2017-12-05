@@ -1,8 +1,14 @@
+## 0. Basic prep.  We're going to go through stacks of data here so
+## get everything working on the VM's large disk.  We also need to be
+## root for much of this.
 sudo su
 mkdir /mnt/data/montagu
 ln -s /mnt/data/montagu /montagu
 
-## 1. Prepare the backup
+## 1. Prepare and restore the backup
+##
+## WARNING: this takes *ages* - like 6 hours or so.  It will also
+## download >100GB of data off S3 (which has a small cost)
 git clone https://github.com/vimc/montagu-backup /montagu/backup
 
 mkdir -p /etc/montagu/backup
@@ -14,6 +20,8 @@ pip3 install --quiet -r /montagu/backup/requirements.txt
 /montagu/backup/restore.py
 
 ## 2. Get the vault up
+##
+## NOTE: This requires quite a bit of manual intervention
 git clone https://github.com/vimc/montagu-vault  /montagu/vault
 git -C /montagu/vault checkout i959
 (cd /montagu/vault && ./run-no-ssl.sh)
@@ -25,7 +33,7 @@ git -C /montagu/vault checkout i959
 ## Restart vault
 (cd /montagu/vault && ./restart-with-ssl.sh)
 
-## Unlock a second time
+## Unlock a second time - the unseal steps here can be done remotely!
 export VAULT_ADDR=https://support.montagu.dide.ic.ac.uk:8200
 vault unseal
 vault unseal

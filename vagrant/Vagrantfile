@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 
 data_disk_file = 'data_disk.vdi'
-data_disk_size = 250 # in GB
+data_disk_size_gb = 250 # in GB
 
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-16.04"

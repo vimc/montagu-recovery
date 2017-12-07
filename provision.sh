@@ -24,4 +24,5 @@ else
     wget $VAGRANT_URL
     dpkg --install $VAGRANT_DEB
     rm -f $VAGRANT_DEB
+    vagrant plugin install vagrant-persistent-storage
 fi

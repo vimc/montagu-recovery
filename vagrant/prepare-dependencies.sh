@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 apt-get update
 apt install -y \

@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -e
+
 if which -a virtualbox > /dev/null; then
     echo "VirtualBox is already installed"
 else

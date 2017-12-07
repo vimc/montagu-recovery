@@ -28,6 +28,7 @@ mkdir -p montagu-ci/shared/restore
 cp vagrant/shared/TeamCity_Backup.zip montagu-ci/shared/restore
 cd montagu-ci
 vagrant up montagu-ci-server
+vagrant up montagu-ci-agent-01 montagu-ci-agent-02 montagu-ci-agent-03
 ```
 
 To destroy the machine (e.g., to do it again) you will have to remove the disk explicitly

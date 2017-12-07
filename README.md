@@ -29,3 +29,12 @@ cp vagrant/shared/TeamCity_Backup.zip montagu-ci/shared/restore
 cd montagu-ci
 vagrant up montagu-ci-server
 ```
+
+To destroy the machine (e.g., to do it again) you will have to remove the disk explicitly
+
+```
+vagrant destroy
+vboxmanage closemedium disk data_disk.vdi --delete
+```
+
+(don't just delete the `.vdi` file manually or VirtualBox will complain next time we use the machine).

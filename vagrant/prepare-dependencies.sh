@@ -47,6 +47,10 @@ else
     rm -f $DUPLICATI_DEB
 fi
 
+NAME=support-test
+hostname $NAME
+sed -i "s/vagrant/$NAME/g" /etc/hosts
+sed -i "s/vagrant/$NAME/g" /etc/hostname
 
 if fgrep support.montagu.dide.ic.ac.uk /etc/hosts > /dev/null; then
     echo "Hosts already set up"

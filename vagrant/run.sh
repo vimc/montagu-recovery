@@ -29,19 +29,15 @@ pip3 install --quiet -r /montagu/backup/requirements.txt
 ##
 ## NOTE: This requires quite a bit of manual intervention
 git clone https://github.com/vimc/montagu-vault  /montagu/vault
-git -C /montagu/vault checkout i959
-(cd /montagu/vault && ./run-no-ssl.sh)
+git -C /montagu/vault checkout i1166
+/montagu/vault/run.sh
 
-## This goes twice - two *different* people must execute this on the
-## machine you are restoring.
-/montagu/vault/unseal-loopback.sh
-/montagu/vault/unseal-loopback.sh
-
-## Restart vault
-(cd /montagu/vault && ./restart-with-ssl.sh)
-
-## Unlock a second time - the unseal steps here can be done remotely!
-## But still must be two different people.
+## Unlock the vault; these commands can be (and probably should be)
+## run remotely, though if you're doing this on a test restore machine
+## and spoofing the domain name via /etc/hosts then you'll need to do
+## it on the restore VM.
+##
+## Two people must execute this.
 export VAULT_ADDR=https://support.montagu.dide.ic.ac.uk:8200
 vault unseal
 vault unseal

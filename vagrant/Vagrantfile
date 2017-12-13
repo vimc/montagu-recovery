@@ -1,0 +1,25 @@
+# -*- mode: ruby -*-
+
+data_disk_file = 'data_disk.vdi'
+data_disk_size_gb = 250 # in GB
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/ubuntu-16.04"
+  config.vm.synced_folder 'shared', '/vagrant'
+
+  # Configure a second disk
+  config.persistent_storage.enabled = true
+  config.persistent_storage.mountname = "data"
+  config.persistent_storage.filesystem = "ext4"
+  config.persistent_storage.mountpoint = "/mnt/data"
+  config.persistent_storage.size = data_disk_size_gb * 1024
+  config.persistent_storage.location = data_disk_file
+
+  config.vm.provider :virtualbox do |vbox|
+    vbox.gui = false
+  end
+
+  config.vm.provision "shell" do |shell|
+    shell.path = "prepare-dependencies.sh"
+  end
+end

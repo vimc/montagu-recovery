@@ -29,7 +29,6 @@ pip3 install --quiet -r /montagu/backup/requirements.txt
 ##
 ## NOTE: This requires quite a bit of manual intervention
 git clone https://github.com/vimc/montagu-vault  /montagu/vault
-git -C /montagu/vault checkout i1166
 /montagu/vault/run.sh
 
 ## Unlock the vault; these commands can be (and probably should be)
